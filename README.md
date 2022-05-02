@@ -1,6 +1,6 @@
 <img width="511" alt="TM" src="https://user-images.githubusercontent.com/103631319/166134860-5c6130b3-e65b-42f0-9212-bc183c8d5787.png">
 
-## Task Management
+# Task Management
 
 ## 주제 
 과제 관리해주는 프로그램 
