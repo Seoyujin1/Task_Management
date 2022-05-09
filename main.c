@@ -14,7 +14,7 @@ int main(){
         menu = selectMenu();
         if (menu == 1){
             if(count > 0) listTask(tlist,count);
-            
+        }
         else if (menu == 2){
             tlist[index] = (Task *)malloc(sizeof(Task));
             count += addTask(tlist[index++]);
