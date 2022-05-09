@@ -1,20 +1,16 @@
 #include "task.h"
+
 int main(){
     int menu;
-    int count=0;
-    int result=0;
-    Task * tlist[30];
-    int index=0;
-    
-    count = loadData(tlist);
-    index = count;
-    
+    int count=0, index=0;
+    Task *tlist[100];
+  
     while (1){
         menu = selectMenu();
-        if (menu == 1){
-            if(count > 0) listTask(tlist,count);
-            
-        else if (menu == 2){
+        if(menu == 0) break;
+        else if (menu == 1){
+            if(count > 0) listTask(tlist, count);
+        }else if (menu == 2){
             tlist[index] = (Task *)malloc(sizeof(Task));
             count += addTask(tlist[index++]);
         }
@@ -24,7 +20,7 @@ int main(){
                 printf("=> 취소됨!\n");
                 continue;
             }
-            updateState(tlist[no-1]);
+            updateTask(tlist[no-1]);
         }
         else if(menu == 4){
             int no = selectDataNo(tlist, index);
@@ -40,9 +36,9 @@ int main(){
                 tlist[no-1] = NULL;
                 count --;
                 printf("=> 삭제됨!\n");
-        	}
-       	 }
-	}
-	printf("종료됨!\n");
-	return 0;
+                }
+            }
+    }
+        printf("=> 종료됨!\n");
+        return 0;
 }
