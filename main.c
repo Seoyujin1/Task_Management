@@ -1,5 +1,4 @@
 #include "task.h"
-#include <stdio.h>
 int main(){
     int menu;
     int count=0;
@@ -41,17 +40,9 @@ int main(){
                 tlist[no-1] = NULL;
                 count --;
                 printf("=> 삭제됨!\n");
-                }
-        }
-        else if(menu == 5){
-            saveData(tlist, index);
-        }else if(menu == 6){
-            searchClassName(tlist, count);
-        }else if(menu == 7){
-            searchDate(tlist, count);
-        }else if(menu == 8) break;
-        printf("=> 종료됨!\n");
-        return 0;
-    }
+        	}
+       	 }
+	}
+	printf("종료됨!\n");
+	return 0;
 }
-
