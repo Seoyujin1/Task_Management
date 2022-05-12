@@ -7,6 +7,10 @@ int selectMenu(){
     printf("2. 추가\n");
     printf("3. 수정\n");
     printf("4. 삭제\n");
+    printf("5. 파일저장\n");
+    printf("6. 과목 상태 수정\n");
+    printf("7. 과목 이름 검색\n");
+    printf("8. 마감 기한 검색\n");
     printf("0. 종료\n\n");
     printf("=> 원하는 메뉴는? ");
     scanf("%d", &menu);
@@ -61,4 +65,70 @@ int selectDataNo(Task *t[], int count){
     printf("번호는 (취소 :0)? ");
     scanf("%d", &no);
     return no;
+}
+
+void searchClassName(Task *t[], int count){
+    int scnt =0;
+    char search[20];
+    printf("검색할 과목명은? ");
+    scanf("%s", search);
+    printf("---------------------------------\n");
+    for(int i=0; i<count; i++){
+        if(t[i]->state == -1)continue;
+        if(strstr(t[i]->className, search)){
+            printf("%2d ", i+1);
+            readTask(*t[i]);
+            scnt++;
+        }
+    }
+    if(scnt == 0)printf("=> 검색된 데이터 없음!");
+    printf("\n");
+}
+
+void searchDate(Task *t[], int count){
+    int scnt =0;
+    char search[20];
+    printf("검색할 마감기한은? ");
+    scanf("%s", search);
+    printf("---------------------------------\n");
+    for(int i=0; i<count; i++){
+        if(t[i]->state == -1)continue;
+        if(strstr(t[i]->date, search)){
+            printf("%2d ", i+1);
+            readTask(*t[i]);
+            scnt++;
+        }
+    }
+    if(scnt == 0)printf("=> 검색된 데이터 없음!");
+    printf("\n");
+}
+
+void updateState(Task *t ,int count){
+    scanf("%d", &t->state);
+    printf("=> 과제 상태 수정성공!");
+}
+
+int loadData(Task *t[]){
+    int count=0,i=0;
+    FILE *fp;
+    fp = fopen("task.txt", "rt");
+    for(; i<100; i++){
+        fscanf(fp, "%s", t[i]->className);
+        if(feof(fp)) break;
+        fscanf(fp, "%s", t[i]->date);
+        fscanf(fp, "%d", &t[i]->state);
+    }
+    fclose(fp);
+    printf("=> 로딩 성공!]\n");
+    return i;
+}
+void saveData(Task *t[], int count){
+    FILE *fp;
+    fp = fopen("task.txt", "wt");
+    for(int i=0; i<count; i++){
+        if(t[i]->state == -1) continue;
+        fprintf(fp, "%s %s %d \n", t[i]->className, t[i]->date, t[i]->state);
+    } 
+    fclose(fp);
+    printf("=> 저장됨! ");
 }
